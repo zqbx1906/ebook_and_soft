@@ -1,0 +1,64 @@
+配置所有用户的环境变量
+sudo gedit /etc/profile
+
+在文件的最后添加以下内容：
+#set Java environment
+export JAVA_HOME=/dengyang/jdk1.8.0_56
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+
+update-alternatives需要配置
+|-- java javac javadoc javah javap javaws jar
+-
+安装jdk
+ sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_144/bin/java 300
+ sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_144/bin/javac 300
+ sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_144/bin/javadoc 300
+ sudo update-alternatives --install /usr/bin/javah javah /usr/lib/jvm/jdk1.8.0_144/bin/javah 300
+ sudo update-alternatives --install /usr/bin/javap javap /usr/lib/jvm/jdk1.8.0_144/bin/javap 300
+ sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.8.0_144/bin/jar 300
+-
+选择jdk
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+-
+install 参数用于添加一个命令的link值
+# 添加 python link
+$ update-alternatives --install /usr/bin/python python /usr/bin/python2.7 2
+# 第一个参数: --install 表示向update-alternatives注册服务名。
+# 第二个参数: 注册最终地址，成功后将会把命令在这个固定的目的地址做真实命令的软链，以后管理就是管理这个软链；
+# 第三个参数: 服务名，以后管理时以它为关联依据。
+# 第四个参数: 被管理的命令绝对路径。
+# 第五个参数: 优先级，数字越大优先级越高。
+
+remove 参数用于删除一个命令的link值，其附带的slave也将一起删除
+$ update-alternatives –remove python /usr/bin/python2.7
+-
+工具的作用
+java：java 启动器，运行java程序，用于启动window console 控制台程序(主要)，用法大多同Python。
+javac：java compile代码编译成字节码，把java文件编译成.class文件。
+javadoc:  java docment 用于转换java代码的注释，转成html文件格式，API文档生成器。
+javah：java header C 头文件和stub生成器，用于写本地化方法。
+javap: java 反编译工具，将字节码解析成代码。
+javaws： java web start 用于启动java的web应用程序。
+jar：生成和管理jar java存档文件。
+-
+javaw：java widget 用于启动 GUI应用程序。
+apt: java 注释处理工具。
+appletviewer：java 在没有web浏览器时运行和调试程序。
+
+
+
+
+ sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-se-8u40-ri/bin/java 300
+ sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-se-8u40-ri/bin/javac 300
+ sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/java-se-8u40-ri/bin/javadoc 300
+ sudo update-alternatives --install /usr/bin/javah javah /usr/lib/jvm/java-se-8u40-ri/bin/javah 300
+ sudo update-alternatives --install /usr/bin/javap javap /usr/lib/jvm/java-se-8u40-ri/bin/javap 300
+ sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/java-se-8u40-ri/bin/jar 300
+
+
+ sudo update-alternatives --remove javac /usr/lib/jvm/java-se-8u40-ri/bin/javadoc 300
+
+
